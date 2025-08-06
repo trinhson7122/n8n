@@ -1,0 +1,20 @@
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    container_name: n8n
+    ports:
+      - 5678:5678
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_HOST=ep-spring-forest-a1us3yrb-pooler.ap-southeast-1.aws.neon.tech
+      - DB_POSTGRESDB_USER=neondb_owner
+      - DB_POSTGRESDB_PASSWORD=
+      #- N8N_ENCRYPTION_KEY=my-encryption-key
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
+  redis:
+    image: redis:6-alpine
+    ports:
+      - 6379:6379
